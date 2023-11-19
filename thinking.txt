@@ -1,0 +1,35 @@
+1/ Board (done)
+    Make it an object
+    Add a turn(int) key
+    Add a board array with 3 arrays with 3 elements each 
+    |[ , , ]|
+    |[ , , ]|
+    |[ , , ]|
+2/ Winning (try the object key value pair to array method to both make the array and check for win)!!
+    1- if an array is populated with the same value
+    2- if the same index in all 3 arrays is populated with the same value
+        i.e => ele([0],[2])
+               ele([1],[2])
+               ele([2],[2])
+    3- the two diagonals are populated with the same value
+        =>  ele([0],[0]) // ele([0],[2])
+            ele([1],[1]) // ele([1],[1])
+            ele([2],[2]) // ele([2],[0])            
+3/ Players
+    Make player objects and give them name, marker and turn(bool) keys
+4/ Playing 
+    Check for player turn key state (true/false)
+    Assign populate array element with player marker
+    Check for winning state
+    Switch player turn key state
+    Increment board turn(int) key by 1 
+    Repeat
+5/
+    If board turn(int) = 9 => it's a tie!
+6/
+    Link DOM to objects and variables
+    Dont use DOM elements to control game state
+    DOM ONLY FOR DISPLAY
+
+    Display game state on DOM
+7/ Profit! :D
