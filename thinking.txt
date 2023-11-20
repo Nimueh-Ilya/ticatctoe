@@ -5,7 +5,7 @@
     |[ , , ]|
     |[ , , ]|
     |[ , , ]|
-2/ Winning (try the object key value pair to array method to both make the array and check for win)!!
+2/ Winning (done)
     1- if an array is populated with the same value
     2- if the same index in all 3 arrays is populated with the same value
         i.e => ele([0],[2])
@@ -24,7 +24,7 @@
     Switch player turn key state
     Increment board turn(int) key by 1 
     Repeat
-5/
+5/ (done)
     If board turn(int) = 9 => it's a tie!
 6/
     Link DOM to objects and variables
