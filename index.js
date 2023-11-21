@@ -4,7 +4,7 @@ const ttt = (() => {
     const board = [];
     const generateBoard = () => {
       for (let i = 0; i <= 2; i++) {
-        board[i] = [0, 1, 2];
+        board[i] = [];
       }
     };
     return { generateBoard, turn, board };
@@ -14,7 +14,9 @@ const ttt = (() => {
     const win = null;
     const horizontalCheck = () => {
       for (let i = 0; i < gameBoard.board.length; i++) {
-        gameBoard.board[i].every((element) => element === gameBoard.board[i][0])
+        gameBoard.board[i].every(
+          (element) => element === gameBoard.board[i][0]
+        ) && gameBoard.board[i].length === 3
           ? (check.win = true)
           : (check.win = false);
         if (check.win === true) {
@@ -29,7 +31,9 @@ const ttt = (() => {
         for (let j = 0; j < gameBoard.board.length; j++) {
           tempArray.push(gameBoard.board[j][i]);
         }
-        tempArray.every((element) => element === tempArray[0])
+        tempArray.every(
+          (element) => element === tempArray[0] && !tempArray.length
+        )
           ? (check.win = true)
           : (check.win = false);
         if (check.win === true) {
@@ -46,7 +50,10 @@ const ttt = (() => {
         gameBoard.board[1][1],
         gameBoard.board[2][2]
       );
-      if (tempArray.every((element) => element === tempArray[0]) === true) {
+      if (
+        tempArray.every((element) => element === tempArray[0]) === true &&
+        !tempArray.length
+      ) {
         check.win = true;
         console.log("winner 3");
       } else {
@@ -56,7 +63,10 @@ const ttt = (() => {
           gameBoard.board[1][1],
           gameBoard.board[2][0]
         );
-        if (tempArray.every((element) => element === tempArray[0]) === true) {
+        if (
+          tempArray.every((element) => element === tempArray[0]) === true &&
+          !tempArray.length
+        ) {
           check.win = true;
           console.log("winner 4");
         }
@@ -77,14 +87,28 @@ const ttt = (() => {
     };
     return { checkAll, win };
   })();
-
+  const players = (() => {
+    const makePlayer = (name, marker) => {
+      const playerName = name;
+      const playerMarker = marker;
+      return { playerName, playerMarker };
+    };
+    const play = (player, row, column) => {
+      player.turn = false;
+      gameBoard.board[row][column] = player.playerMarker;
+      console.log(
+        `${player.playerName} played at the coordinates [${row},${column}]`
+      );
+    };
+    return { play, makePlayer };
+  })();
   gameBoard.generateBoard();
+  const player1 = players.makePlayer("peepo", "x");
+  const player2 = players.makePlayer("peepo", "o");
+  players.play(player1, 0, 0);
+  players.play(player2, 0, 1);
+  players.play(player1, 0, 2);
 
-  gameBoard.board[0][0] = 3;
-  gameBoard.board[1][1] = 3;
-  gameBoard.board[2][2] = 3;
   console.log(gameBoard.board);
-  gameBoard.turn = 9;
   check.checkAll();
-  console.log(check.win);
 })();
