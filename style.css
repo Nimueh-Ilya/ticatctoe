@@ -1,0 +1,40 @@
+html,
+body,
+.container-div,
+.gameboard {
+  height: 90%;
+}
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  gap: 10px;
+}
+.scoreboard {
+  height: 190px;
+  border: black solid;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 90%;
+  aspect-ratio: 1;
+}
+.cell {
+  border: black solid;
+}
+.cell:nth-child(-n + 3) {
+  border-top: hidden;
+}
+.cell:nth-child(n + 7) {
+  border-bottom: hidden;
+}
+.cell:nth-child(3n-2) {
+  border-left: hidden;
+}
+.cell:nth-child(3n) {
+  border-right: hidden;
+}

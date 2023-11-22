@@ -19,6 +19,7 @@ const ttt = (() => {
   })();
   const binding = (() => {})();
   const render = (() => {})();
+  const form = (() => {})();
   const gameBoard = (() => {
     const board = [];
     const generateBoard = () => {
