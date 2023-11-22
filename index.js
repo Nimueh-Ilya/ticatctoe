@@ -17,6 +17,8 @@ const ttt = (() => {
     };
     return { turnChange, play, currentPlayer };
   })();
+  const binding = (() => {})();
+  const render = (() => {})();
   const gameBoard = (() => {
     const board = [];
     const generateBoard = () => {
