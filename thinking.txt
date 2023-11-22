@@ -5,7 +5,7 @@
     |[ , , ]|
     |[ , , ]|
     |[ , , ]|
-2/ Winning (done) [NOTE!! : PUT THE REPEATING CHECKER IN A FUNCTION]
+2/ Winning (done)
     1- if an array is populated with the same value
     2- if the same index in all 3 arrays is populated with the same value
         i.e => ele([0],[2])
@@ -15,13 +15,13 @@
         =>  ele([0],[0]) // ele([0],[2])
             ele([1],[1]) // ele([1],[1])
             ele([2],[2]) // ele([2],[0])            
-3/ Players
+3/ Players(done)
     Make player objects and give them name, marker and turn(bool) keys
-4/ Playing 
+4/ Playing (done)
     Check for player turn key state (true/false)
     Assign populate array element with player marker
     Check for winning state
-    Switch player turn key state
+    Switch player turn key state(not done)
     Increment board turn(int) key by 1 
     Repeat
 5/ (done)
