@@ -4,32 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <title>Document</title>
   </head>
   <body>
     <div class="container-div">
-      <div class="scoreboard">TIC TAC TOE</div>
+      <div class="title">TIC TAC TOE</div>
+      <dialog class="modal">
+        <form method="dialog" class="form">
+          <div class="player">
+            <label for="firstPlayerName">Player 1 Name</label>
+            <input type="text" id="firstPlayerName" />
+          </div>
+          <div class="player">
+            <label for="secondPlayerName">Player 2 Name</label>
+            <input type="text" id="secondPlayerName" />
+          </div>
+          <button type="submit" class="submit-button">Submit</button>
+        </form>
+      </dialog>
       <div class="gameboard">
         <div class="firstPannel pannel">
-          <div>Player 1 score</div>
-          <div>Player 2 score</div>
-          <button>Restart</button>
+          <div class="player-1-score">Player 1 score</div>
+          <div class="player-2-score">Player 2 score</div>
+          <button class="restart">Rematch</button>
         </div>
         <div class="board">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+          <div class="cell cell1" data-row="0" data-col="0"></div>
+          <div class="cell cell2" data-row="0" data-col="1"></div>
+          <div class="cell cell3" data-row="0" data-col="2"></div>
+          <div class="cell cell4" data-row="1" data-col="0"></div>
+          <div class="cell cell5" data-row="1" data-col="1"></div>
+          <div class="cell cell6" data-row="1" data-col="2"></div>
+          <div class="cell cell7" data-row="2" data-col="0"></div>
+          <div class="cell cell8" data-row="2" data-col="1"></div>
+          <div class="cell cell9" data-row="2" data-col="2"></div>
         </div>
         <div class="secondPannel pannel">
-          <div>WIN/LOSE</div>
-          <button>New Game</button>
+          <div class="announcement">WIN/LOSE</div>
+          <button class="new-game">New Game</button>
         </div>
       </div>
     </div>

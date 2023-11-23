@@ -7,6 +7,7 @@ body,
 .gameboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
   height: 90%;
@@ -37,4 +38,9 @@ body,
 }
 .cell:nth-child(3n) {
   border-right: hidden;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
