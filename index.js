@@ -1,6 +1,4 @@
 const ttt = (() => {
-  const render = (() => {})();
-  const form = (() => {})();
   const gamePlay = (() => {
     const currentPlayer = null;
     const turnChange = () => {
@@ -39,28 +37,30 @@ const ttt = (() => {
           ? (check.win = true)
           : (check.win = false);
         if (check.win === true) {
-          console.log("winner 1");
           break;
         }
       }
     };
     const verticalCheck = () => {
-      let tempArray = [];
-      for (let i = 0; i < gameBoard.board.length; i++) {
-        for (let j = 0; j < gameBoard.board.length; j++) {
-          tempArray.push(gameBoard.board[j][i]);
+      if (check.win !== true) {
+        let tempArray = [];
+        for (let i = 0; i < gameBoard.board.length; i++) {
+          for (let j = 0; j < gameBoard.board.length; j++) {
+            tempArray.push(gameBoard.board[j][i]);
+          }
+          tempArrayChecker(tempArray) &&
+          tempArray.length === 3 &&
+          !tempArray.includes(undefined)
+            ? (check.win = true)
+            : (check.win = false);
+          if (check.win === true) {
+            console.log(check.win);
+            console.log("winner 2");
+            break;
+          }
+          tempArray = [];
         }
-        tempArrayChecker(tempArray) &&
-        tempArray.length === 3 &&
-        !tempArray.includes(undefined)
-          ? (check.win = true)
-          : (check.win = false);
-        if (check.win === true) {
-          console.log("winner 2");
-          break;
-        }
-        tempArray = [];
-      }
+      } else return;
     };
     const diagonalCheck = () => {
       let tempArray = [];
@@ -89,61 +89,103 @@ const ttt = (() => {
           !tempArray.includes(undefined)
         ) {
           check.win = true;
-          console.log("winner 4");
         }
       }
     };
     const checkAll = () => {
-      if (gamePlay.turn == 9) {
-        console.log("tie");
-      } else {
+      if (gamePlay.turn <= 9) {
         horizontalCheck();
         verticalCheck();
         diagonalCheck();
+        if (check.win == true) {
+          render.renderWinner();
+        } else if (gamePlay.turn == 9 && check.win != true) {
+          render.renderTie();
+        }
       }
     };
     return { checkAll, win };
   })();
+  const cashDOM = (() => {
+    return {
+      restartButton: document.querySelector(".restart"),
+      announcement: document.querySelector(".announcement"),
+      player1name: document.querySelector("#firstPlayerName"),
+      player2name: document.querySelector("#secondPlayerName"),
+      submitButton: document.querySelector(".submit-button"),
+      modal: document.querySelector(".modal"),
+      board: document.querySelector(".board"),
+      cells: document.querySelectorAll(".cell"),
+    };
+  })();
   const binding = (() => {
-    const restartButton = document.querySelector(".restart");
-    const newGameButton = document.querySelector(".new-game");
-    const player1Score = document.querySelector(".player-1-score");
-    const player2Score = document.querySelector(".player-2-score");
-    const announcement = document.querySelector(".announcement");
-    const player1name = document.querySelector(".firstPlayerName");
-    const player2name = document.querySelector(".secondPlayerName");
-    const board = document.querySelector(".board");
-    const cells = document.querySelectorAll(".cell");
-    restartButton.addEventListener("click", gameBoard.generateBoard());
-    cells.forEach((element) => {
-      element.addEventListener(
-        "click",
-        (e) => {
-          if (check.win != true) {
-            gamePlay.turnChange();
-            gamePlay.play(
-              gamePlay.currentPlayer,
-              e.target.getAttribute("data-row"),
-              e.target.getAttribute("data-col")
-            );
-            console.log(gameBoard.board);
-            console.log(gamePlay.turn);
-            check.checkAll();
-            console.log(check.win);
-          } else {
-            return;
-          }
-        },
-        { once: true }
-      );
+    cashDOM.restartButton.addEventListener("click", () => {
+      cashDOM.announcement.innerHTML = "";
+      gameBoard.generateBoard();
+      check.win = null;
+      gamePlay.turn = 0;
+      cashDOM.cells.forEach((element) => {
+        element.innerHTML = "";
+      });
+      clickCell();
     });
+    const clickCell = () => {
+      cashDOM.cells.forEach((element) => {
+        element.addEventListener(
+          "click",
+          (e) => {
+            if (check.win != true) {
+              gamePlay.turnChange();
+              gamePlay.play(
+                gamePlay.currentPlayer,
+                e.target.getAttribute("data-row"),
+                e.target.getAttribute("data-col")
+              );
+              console.log(gameBoard.board);
+              console.log(gamePlay.turn);
+              render.renderMarker(e.target);
+              check.checkAll();
+              console.log(check.win);
+            } else {
+              return;
+            }
+          },
+          { once: true }
+        );
+      });
+    };
+    clickCell();
+    document.addEventListener("DOMContentLoaded", () => {
+      cashDOM.modal.show();
+    });
+    cashDOM.submitButton.addEventListener("click", (event) => {
+      gameBoard.generateBoard();
+      player1.playerName = cashDOM.player1name.value;
+      player2.playerName = cashDOM.player2name.value;
+      console.log(player1);
+      console.log(player2);
+    });
+    return { clickCell };
+  })();
+  const render = (() => {
+    const renderMarker = (element) => {
+      element.innerHTML = `${gamePlay.currentPlayer.playerMarker}`;
+    };
+    const renderBoard = () => {};
+    const renderWinner = () => {
+      cashDOM.announcement.innerHTML = `${gamePlay.currentPlayer.playerName} wins`;
+    };
+    const renderTie = () => {
+      cashDOM.announcement.innerHTML = `It's a tie`;
+    };
+    return { renderMarker, renderTie, renderWinner };
   })();
   const player1 = {
-    playerName: "Aymen",
+    playerName: null,
     playerMarker: "X",
   };
   const player2 = {
-    playerName: "nemyA",
+    playerName: null,
     playerMarker: "O",
   };
 })();
