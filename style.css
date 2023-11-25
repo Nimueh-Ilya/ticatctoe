@@ -1,8 +1,26 @@
+html {
+  font-family: "Kdam Thmor Pro", sans-serif;
+}
 html,
 body,
 .container-div,
 .gameboard {
   height: 90%;
+  padding: 0;
+  margin: 0;
+}
+.title {
+  height: 35%;
+  background-color: #1f2937;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  margin: 0;
+  padding: 0;
+
+  letter-spacing: 15px;
 }
 .gameboard {
   display: grid;
@@ -13,10 +31,6 @@ body,
   height: 90%;
   gap: 10px;
 }
-.scoreboard {
-  height: 190px;
-  border: black solid;
-}
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,6 +40,11 @@ body,
 }
 .cell {
   border: black solid;
+  border-width: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
 }
 .cell:nth-child(-n + 3) {
   border-top: hidden;
@@ -44,7 +63,36 @@ body,
   flex-direction: column;
   gap: 20px;
 }
+.pannel {
+  display: flex;
+  justify-content: center;
+}
 .announcement {
-  width: 120px;
-  height: 100px;
+  font-size: 80px;
+}
+.restart {
+  border-style: solid;
+  border-width: 8px;
+  border-radius: 25px;
+  border-color: #1f2937;
+  background-color: #1f2937;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 25px;
+  font-weight: bold;
+
+  margin: 20px;
+  height: 80px;
+  aspect-ratio: 2;
+}
+.restart:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.modal {
+  margin-top: 100px;
+  margin-right: 41%;
+}
+.modal::backdrop {
+  background: gray;
 }

@@ -119,39 +119,37 @@ const ttt = (() => {
     };
   })();
   const binding = (() => {
+    function clickedCell(e) {
+      if (check.win != true) {
+        gamePlay.turnChange();
+        gamePlay.play(
+          gamePlay.currentPlayer,
+          e.target.getAttribute("data-row"),
+          e.target.getAttribute("data-col")
+        );
+        console.log(gameBoard.board);
+        console.log(gamePlay.turn);
+        render.renderMarker(e.target);
+        check.checkAll();
+        console.log(check.win);
+      } else {
+        return;
+      }
+    }
     cashDOM.restartButton.addEventListener("click", () => {
       cashDOM.announcement.innerHTML = "";
       gameBoard.generateBoard();
       check.win = null;
       gamePlay.turn = 0;
       cashDOM.cells.forEach((element) => {
+        element.removeEventListener("click", clickedCell, { once: true });
         element.innerHTML = "";
       });
       clickCell();
     });
     const clickCell = () => {
       cashDOM.cells.forEach((element) => {
-        element.addEventListener(
-          "click",
-          (e) => {
-            if (check.win != true) {
-              gamePlay.turnChange();
-              gamePlay.play(
-                gamePlay.currentPlayer,
-                e.target.getAttribute("data-row"),
-                e.target.getAttribute("data-col")
-              );
-              console.log(gameBoard.board);
-              console.log(gamePlay.turn);
-              render.renderMarker(e.target);
-              check.checkAll();
-              console.log(check.win);
-            } else {
-              return;
-            }
-          },
-          { once: true }
-        );
+        element.addEventListener("click", clickedCell, { once: true });
       });
     };
     clickCell();

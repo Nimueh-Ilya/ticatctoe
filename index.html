@@ -4,21 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Roboto:wght@100;400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <script src="index.js" defer></script>
     <title>Document</title>
   </head>
   <body>
     <div class="container-div">
-      <div class="title">TIC TAC TOE</div>
+      <div class="title">TIC - TAC - TOE</div>
       <dialog class="modal">
         <form method="dialog" class="form">
           <div class="player">
             <label for="firstPlayerName">Player 1 Name</label>
-            <input type="text" id="firstPlayerName" />
+            <input
+              type="text"
+              id="firstPlayerName"
+              required
+              minlength="3"
+              maxlength="6"
+            />
           </div>
           <div class="player">
             <label for="secondPlayerName">Player 2 Name</label>
-            <input type="text" id="secondPlayerName" />
+            <input
+              type="text"
+              id="secondPlayerName"
+              required
+              minlength="3"
+              maxlength="6"
+            />
           </div>
           <button type="submit" class="submit-button">Submit</button>
         </form>
